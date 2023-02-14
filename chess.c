@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
-//  <<<<<<< HEAD
+//  GAME LOGIC START
 
 
 int main () {
@@ -34,5 +34,5 @@ int main () {
   } while (buf[0] != 'q' && buf[0] != 'Q') ;
     
 	printf("Terminating...\n") ;
-//  >>>>>>> remotes/origin/Game_Logic
+//  GAME LOGIC END
 }
