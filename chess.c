@@ -19,7 +19,7 @@
 // SHOW BOARD PRETTIER START
 void showBoard (int board[8][8]) {
         printf("\n\n  01234567\n");
-	printf("╔════════╗\n");
+	printf("╔══════════╗\n");
 
 	for (int i = 0; i < 8; i++) {
 		printf("║"); 
@@ -46,9 +46,10 @@ void showBoard (int board[8][8]) {
 				printf("♙");
 			}
 		}
-		printf("\n"); } //added }
-//	printf("║\n") ; 
-	printf("╚════════╝\n");
+//		printf("\n"); } //added }
+	printf("║\n") ; 
+	}
+	printf("╚══════════╝\n");
 }
 
 // SHOW BOARD PRETTIER END
