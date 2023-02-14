@@ -1,11 +1,27 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-// ♔ ♕ ♖ ♗ ♘ ♙
-//changing to int type -no
-void showBoard (int board[8][9]) {
+// ♔ ♕ ♖ ♗ ♘ ♙ // SHOW BOARD PRETTIER START
+
+/* ┌ └ ┐ ┘
+
+├ ┤ ┬ ┴
+ 
+─ │ ┼
+ 
+ might need these...
+ 
+ ╟ ╢ ╧ ╤
+ 
+*/
+ 
+void showBoard (int board[8][8]) {
+	printf("\n\n╔════════╗\n");
+
 	for (int i = 0; i < 8; i++) {
+		printf("║"); 
 		for (int j = 0; j < 8; j++) {
+
 			if (board[i][j] == 0) {
 				if ((i + j) % 2 == 0) {
 					printf(" ");
@@ -26,33 +42,12 @@ void showBoard (int board[8][9]) {
 				printf("♙");
 			}
 		}
-		printf("\n");
-	}
+		printf("\n"); } //added }
+	printf("║\n") ; 
+	printf("╚════════╝\n");
 }
 
-/* int main () {
-	printf("Welcome to Terminal Chess!\n");
-	printf("Initializing Board...")	;
-	int board [8][9]  = { {5, 4, 3, 1, 2, 3, 4, 5}
-		            , {6, 6, 6, 6, 6, 6, 6, 6}
-			    , {0, 0, 0, 0, 0, 0, 0, 0}
-			    , {0, 0, 0, 0, 0, 0, 0, 0}
-			    , {0, 0, 0, 0, 0, 0, 0, 0}
-			    , {0, 0, 0, 0, 0, 0, 0, 0} 
-			    , {0, 0, 0, 0, 0, 0, 0, 0}
-			    , {6, 6, 6, 6, 6, 6, 6, 6}
-			    , {5, 4, 3, 1, 2, 3, 4, 5}
-			    } ; */
-//-	printf("Board Initialized!") ;
-	
-	
-	
-	// rest of game...
-	
-//-	printf("Terminating...") ;
-	
-//- }
-//- >>>>>>> remotes/origin/Show_Board
+// SHOW BOARD PRETTIER END
 // GAME LOGIC START
 
 int main () {
