@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 
-
 // ♔ ♕ ♖ ♗ ♘ ♙ 
 /* ┌ └ ┐ ┘
 
@@ -84,6 +83,7 @@ void showBoard (int board[8][8]) {
 
 // SHOW BOARD PRETTIER END
 
+bool isValidMove (int x1, int x2, int y1, int y2, int board[8][8]) ;
 
 int main () {
 	printf("Welcome to Terminal Chess!\n");
@@ -92,15 +92,16 @@ int main () {
 		           , {6, 6, 6, 6, 6, 6, 6, 6}
 			   , {0, 0, 0, 0, 0, 0, 0, 0}
 			   , {0, 0, 0, 0, 0, 0, 0, 0}
-		           , {0, 0, 0, 0, 0, 0, 0, 0} 
+		           , {0, 0, 0, 0, 0, 0, 0, 0}
 			   , {0, 0, 0, 0, 0, 0, 0, 0}
 			   , {6, 6, 6, 6, 6, 6, 6, 6}
 			   , {5, 4, 3, 2, 1, 3, 4, 5}
-				             } ;
+
+							} ;
   char buf[100];
   bool whitesMove = true;
 	printf("Board Initialized!\n") ;
-	
+
 	//added showboard
 	showBoard(board);
 
@@ -131,12 +132,16 @@ bool isValidMove (int x1, int x2, int y1, int y2, int board[8][8]) {
 	int piecesInWay = 0;
 	if (board[x1][x2] == 0) {
 		return false;
-	} else if (board[x1][y2] == 1) { // king
+
+	} else if (board[x1][x2] == 1) { 
 		if (abs(x1 - x2) <= 1 && abs(y1-y2) <= 1) {
 			return true;
 		}
-	} else if (board[x1][y2] == 2) { 
+		// king
+
+	} else if (board[x1][x2] == 2) { 
 		// queen
+
 	} else if (board[x1][y2] == 3) {  // bishop
 		while (true) {
 			xcheck += (x1 > x2)? -1 : 1;
