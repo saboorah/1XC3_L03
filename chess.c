@@ -44,7 +44,6 @@ void showBoard (int board[8][8]) {
 			if (board[i][j] == 0) {
 				
 				if ((i + j) % 2 == 0) {
-//>>>>>>> remotes/origin/gridlines
 					printf(" ");
 				} else {
 					printf("▒");
@@ -71,28 +70,24 @@ void showBoard (int board[8][8]) {
 	if (i < 7) {
 		printf("  ├─┼─┼─┼─┼─┼─┼─┼─┤\n") ;
 	}
-	//////////////////////////
-	
 
-
-//<<<<<<< HEAD
 //		printf("\n"); } //added }
+
 //-	printf("║\n") ; 
+
 	} //for i
 
-	//after "switch/if" statements
+	//after loops
 	printf("  └─┴─┴─┴─┴─┴─┴─┴─┘\n");
 //-	printf("╚══════════╝\n");
 	
-//>>>>>>> remotes/origin/gridlines
-}
+} //end of showboard func
 
 // SHOW BOARD PRETTIER END
 
 
 int main () {
 	printf("Welcome to Terminal Chess!\n");
-//<<<<<<< HEAD
 	printf("Initializing Board...\n")	;
 	int board [8][8] = { {5, 4, 3, 1, 2, 3, 4, 5}
 		           , {6, 6, 6, 6, 6, 6, 6, 6}
@@ -106,8 +101,6 @@ int main () {
   char buf[100];
   bool whitesMove = true;
 	printf("Board Initialized!\n") ;
-
-//>>>>>>> remotes/origin/gridlines 
 	
 	//added showboard
 	showBoard(board);
