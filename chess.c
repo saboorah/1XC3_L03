@@ -83,7 +83,10 @@ void showBoard (int board[8][8]) {
 
 // SHOW BOARD PRETTIER END
 
-bool isValidMove (int x1, int x2, int y1, int y2, int board[8][8]) ;
+//- moving bool  on top of main -nO
+//bool isValidMove (int x1, int x2, int y1, int y2, int board[8][8]) ;
+
+//MOVEMENT CHECKS START
 
 //bool memberOf (int *ValidMoves[2], int x, int y) ; 
 
@@ -190,6 +193,9 @@ void makeMove (char* input, int board[8][8]) {
 	board[start_x][start_y] = 0;
 }
 
+//MOVENT CHECKS ENDS
+
+
 int main () {
 	printf("Welcome to Terminal Chess!\n");
 	printf("Initializing Board...\n")	;
@@ -227,6 +233,7 @@ int main () {
     	printf("♔ >> ");
 	scanf("%s", buf);
 	flag = true;
+
     } while (!isValidMove(buf, board));
     makeMove(buf, board);
     whitesMove = !whitesMove;
@@ -239,8 +246,9 @@ int main () {
 
 //SPENNY'S BRANCH START
 
+bool isValidMove2 (int x1, int x2, int y1, int y2, int board[8][8]) ;
 
-bool isValidMove (int x1, int x2, int y1, int y2, int board[8][8]) {
+bool isValidMove2 (int x1, int x2, int y1, int y2, int board[8][8]) {
 	int xcheck = x1;
 	int ycheck = y1;
 	int piecesInWay = 0;
@@ -320,6 +328,6 @@ bool isValidMove (int x1, int x2, int y1, int y2, int board[8][8]) {
 		}
 	}
 	return false;
-}
+}  
 
 //SPENNY'S BRANCH END
