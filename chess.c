@@ -16,18 +16,35 @@
  ╟ ╢ ╧ ╤
  
 */
+
 // SHOW BOARD PRETTIER START
 void showBoard (int board[8][8]) {
+
         printf("\n\n  01234567\n");
-	printf("╔══════════╗\n");
+	printf("\n\n  ┌─┬─┬─┬─┬─┬─┬─┬─┐\n"); //added
+//-	printf("╔══════════╗\n");
 
 	for (int i = 0; i < 8; i++) {
-		printf("║"); 
-		printf("%d ", i); 
+//-		printf("║");
+ 
+		printf("%d ", i);
+		printf("│"); //added
+
+		bool flag = true;   //added
+
 		for (int j = 0; j < 8; j++) {
 
+			//adding if statement
+			if (!flag) {
+				printf("│"); 
+			}
+			flag = false;
+                        ////////////////////////
+
 			if (board[i][j] == 0) {
+				
 				if ((i + j) % 2 == 0) {
+//>>>>>>> remotes/origin/gridlines
 					printf(" ");
 				} else {
 					printf("▒");
@@ -45,11 +62,29 @@ void showBoard (int board[8][8]) {
 			} else if (board[i][j] == 6) {
 				printf("♙");
 			}
-		}
-//		printf("\n"); } //added }
-	printf("║\n") ; 
+			
+			
+		} //for j
+
+	//added this
+	printf("│\n") ;
+	if (i < 7) {
+		printf("  ├─┼─┼─┼─┼─┼─┼─┼─┤\n") ;
 	}
-	printf("╚══════════╝\n");
+	//////////////////////////
+	
+
+
+//<<<<<<< HEAD
+//		printf("\n"); } //added }
+//-	printf("║\n") ; 
+	} //for i
+
+	//after "switch/if" statements
+	printf("  └─┴─┴─┴─┴─┴─┴─┴─┘\n");
+//-	printf("╚══════════╝\n");
+	
+//>>>>>>> remotes/origin/gridlines
 }
 
 // SHOW BOARD PRETTIER END
@@ -57,6 +92,7 @@ void showBoard (int board[8][8]) {
 
 int main () {
 	printf("Welcome to Terminal Chess!\n");
+//<<<<<<< HEAD
 	printf("Initializing Board...\n")	;
 	int board [8][8] = { {5, 4, 3, 1, 2, 3, 4, 5}
 		           , {6, 6, 6, 6, 6, 6, 6, 6}
@@ -70,7 +106,10 @@ int main () {
   char buf[100];
   bool whitesMove = true;
 	printf("Board Initialized!\n") ;
-//added showboard
+
+//>>>>>>> remotes/origin/gridlines 
+	
+	//added showboard
 	showBoard(board);
 
 
