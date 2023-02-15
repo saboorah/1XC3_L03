@@ -39,7 +39,6 @@ void showBoard (int board[8][8]) {
 				printf("│"); 
 			}
 			flag = false;
-                        ////////////////////////
 
 			if (board[i][j] == 0) {
 				
