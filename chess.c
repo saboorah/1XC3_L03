@@ -174,23 +174,30 @@ bool isValidMove (char* input, int board[8][8]) {
 			break;
 		case 6 : // Pawn
 			break;
-	}
+ 	}
+
+} //added? 
 	/*
 	if (!memberOf(validMoves, end_x, end_y)) {
 		return false;
 	}
 	*/
+
+/*bool isValidMove (char* input, int board[8][8]) {
+	// Add move validity checks some other time! Too lazy!! 
+
 	return true;
-}
+}*/
 
 void makeMove (char* input, int board[8][8]) {
-	int start_y = input[0] - 48;
-	int start_x = input[1] - 48;
-	int end_y = input[3] - 48;
-	int end_x = input[4] - 48;
-	
+
+	int start_x = input[0] - 48;
+	int start_y = input[1] - 48;
+	int end_x = input[3] - 48;
+	int end_y = input[4] - 48;
+
 	board[end_x][end_y] = board[start_x][start_y];
-	board[start_x][start_y] = 0;
+
 }
 
 //MOVENT CHECKS ENDS
@@ -220,7 +227,8 @@ int main () {
   printf("Enter `q` to quit at any time.\n");
   printf("Moves are entered as co-ordinate pairs, such as \"13-33\" \n");
   do {
-    bool flag = false;  
+    bool flag = false; 
+    showBoard(board);
     do {
 	if (flag) {
 		printf("Move Invalid! Try again!");
@@ -230,104 +238,106 @@ int main () {
     	} else {
       		printf("Black to move.\n");
     	}
+
     	printf("♔ >> ");
 	scanf("%s", buf);
 	flag = true;
 
-    } while (!isValidMove(buf, board));
+    } while (!isValidMove(buf, board) && buf[0] != 'q' && buf[0] != 'Q');
     makeMove(buf, board);
-    whitesMove = !whitesMove;
+
   } while (buf[0] != 'q' && buf[0] != 'Q') ;
     
-	printf("Terminating...\n") ;
-//  GAME LOGIC END
-}
+	printf("Terminating...\n") ; 
 
+}
+//  GAME LOGIC END
 
 //SPENNY'S BRANCH START
-
+/*
 bool isValidMove2 (int x1, int x2, int y1, int y2, int board[8][8]) ;
 
 bool isValidMove2 (int x1, int x2, int y1, int y2, int board[8][8]) {
-	int xcheck = x1;
-	int ycheck = y1;
-	int piecesInWay = 0;
-	if (board[x1][x2] == 0) {
-		return false;
+        int xcheck = x1;
+        int ycheck = y1;
+        int piecesInWay = 0;
+        if (board[x1][x2] == 0) {
+                return false;
 
-	} else if (board[x1][x2] == 1) { 
-		if (abs(x1 - x2) <= 1 && abs(y1-y2) <= 1) {
-			return true;
-		}
-		// king
+        } else if (board[x1][x2] == 1) {
+                if (abs(x1 - x2) <= 1 && abs(y1-y2) <= 1) {
+                        return true;
+                }
+                // king
 
-	} else if (board[x1][x2] == 2) { 
-		// queen
+        } else if (board[x1][x2] == 2) {
+                // queen
 
-	} else if (board[x1][y2] == 3) {  // bishop
-		while (true) {
-			xcheck += (x1 > x2)? -1 : 1;
-			ycheck += (y1 > y2)? -1 : 1;
-		 	if (xcheck < 0 || ycheck < 0 || xcheck > 7 || ycheck > 7) {
-				break;
-			}
-			if (board[xcheck][ycheck] != 0) {
-				piecesInWay += 1;
-			} 
-			if (piecesInWay == 2) {
-				break;
-			}
-			if (xcheck == x2 && ycheck == y2) {
-				return true;
-			}
-		}
-	} else if (board[x1][y2] == 4) { 
-		// knight
-	} else if (board[x1][y2] == 5) { // Rook
-		while (true) {
-			if (y1 == y2) {
-				xcheck += (x1 > x2)? -1 : 1;
-			} else if (x1 == x2) {
-				ycheck += (y1 > y2)? -1 : 1;
-			} else {
-				return false;
-			}
-			
-		 	if (xcheck < 0 || ycheck < 0 || xcheck > 7 || ycheck > 7) {
-				break;
-			}
-			if (board[xcheck][ycheck] != 0) {
-				piecesInWay += 1;
-			} 
-			if (piecesInWay == 2) {
-				break;
-			}
-			if (xcheck == x2 && ycheck == y2) {
-				return true;
-			}
-		}
-	} else if (board[x1][y2] == 6) { // Pawn
-		//printf("Pawn Selected\n");
-		//printf("Moving in column %d \n", y1);
-		//printf("y1-y2=%d\n", x1-x2);
-		if (x1 - x2 == 1 && y1 == y2) { // forward one
-			printf("Detected forward move by 1\n");
-			if (board[x2][y2] == 0) {
-				return true;
-			}
-		} else if (x1 - x2 == 2 && y1 == y2) { // forward two
-//			printf("Detected forward move by 2\n");
-			if (board[x2][y2] == 0 && board[x2+1][y2] == 0 && x1 == 6) {
-				return true;
-			}
-		} else if (abs(y1 - y2) == 1 && x1-x2 == 1) { // capture left or right
-			//printf("Detected Capture\n");
-			if (board[x2][y2] != 0) {
-				return true;
-			}
-		}
-	}
-	return false;
-}  
+        } else if (board[x1][y2] == 3) {  // bishop
+                while (true) {
+                        xcheck += (x1 > x2)? -1 : 1;
+                        ycheck += (y1 > y2)? -1 : 1;
+                        if (xcheck < 0 || ycheck < 0 || xcheck > 7 || ycheck > 7) {
+                                break;
+                        }
+                        if (board[xcheck][ycheck] != 0) {
+                                piecesInWay += 1;
+                        }
+                        if (piecesInWay == 2) {
+                                break;
+                        }
+                        if (xcheck == x2 && ycheck == y2) {
+                                return true;
+                        }
+                }
+        } else if (board[x1][y2] == 4) {
+                // knight
+        } else if (board[x1][y2] == 5) { // Rook
+                while (true) {
+                        if (y1 == y2) {
+                                xcheck += (x1 > x2)? -1 : 1;
+                        } else if (x1 == x2) {
+                                ycheck += (y1 > y2)? -1 : 1;
+                        } else {
+                                return false;
+                        }
+
+                        if (xcheck < 0 || ycheck < 0 || xcheck > 7 || ycheck > 7) {
+                                break;
+                        }
+                        if (board[xcheck][ycheck] != 0) {
+                                piecesInWay += 1;
+                        }
+                        if (piecesInWay == 2) {
+                                break;
+                        }
+                        if (xcheck == x2 && ycheck == y2) {
+                                return true;
+                        }
+                }
+        } else if (board[x1][y2] == 6) { // Pawn
+                //printf("Pawn Selected\n");
+                //printf("Moving in column %d \n", y1);
+                //printf("y1-y2=%d\n", x1-x2);
+                if (x1 - x2 == 1 && y1 == y2) { // forward one
+                        printf("Detected forward move by 1\n");
+                        if (board[x2][y2] == 0) {
+                                return true;
+                        }
+                } else if (x1 - x2 == 2 && y1 == y2) { // forward two
+//                      printf("Detected forward move by 2\n");
+                        if (board[x2][y2] == 0 && board[x2+1][y2] == 0 && x1 == 6) {
+                                return true;
+                        }
+                } else if (abs(y1 - y2) == 1 && x1-x2 == 1) { // capture left or right
+                        //printf("Detected Capture\n");
+                        if (board[x2][y2] != 0) {
+                                return true;
+                        }
+                }
+        }
+        return false;
+} */
 
 //SPENNY'S BRANCH END
+
