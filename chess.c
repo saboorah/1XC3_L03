@@ -232,7 +232,7 @@ int main () {
     showBoard(board);
     do {
 	if (flag) {
-		printf("Move Invalid! Try again!");
+		printf("Move Invalid! Try again!\n");
 	}
     	if (whitesMove) {
       		printf("White to move.\n");
