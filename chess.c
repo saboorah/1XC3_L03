@@ -19,14 +19,15 @@
 void showBoard (int board[8][8]) {
 
         printf("\n\n   0 1 2 3 4 5 6 7\n");
-	printf("  ┌─┬─┬─┬─┬─┬─┬─┬─┐\n"); //added
-//-	printf("╔══════════╗\n");
+      //printf("  ┌─┬─┬─┬─┬─┬─┬─┬─┐\n"); //added
+        printf("  ╔═╤═╤═╤═╤═╤═╤═╤═╗\n");
 
 	for (int i = 0; i < 8; i++) {
-//-		printf("║");
+		
  
 		printf("%d ", i);
-		printf("│"); //added
+		printf("║");
+//		printf("│"); //added
 
 		bool flag = true;   //added
 
@@ -34,12 +35,12 @@ void showBoard (int board[8][8]) {
 
 			//adding if statement
 			if (!flag) {
-				printf("│"); 
+				printf("│");
 			}
 			flag = false;
 
 			if (board[i][j] == 0) {
-				
+
 				if ((i + j) % 2 == 0) {
 					printf(" ");
 				} else {
@@ -63,9 +64,9 @@ void showBoard (int board[8][8]) {
 		} //for j
 
 	//added this
-	printf("│\n") ;
+	printf("║\n") ;
 	if (i < 7) {
-		printf("  ├─┼─┼─┼─┼─┼─┼─┼─┤\n") ;
+		printf("  ╟─┼─┼─┼─┼─┼─┼─┼─╢\n") ;
 	}
 
 //		printf("\n"); } //added }
@@ -75,8 +76,8 @@ void showBoard (int board[8][8]) {
 	} //for i
 
 	//after loops
-	printf("  └─┴─┴─┴─┴─┴─┴─┴─┘\n");
-//-	printf("╚══════════╝\n");
+//	printf("  └─┴─┴─┴─┴─┴─┴─┴─┘\n");
+	printf("  ╚═╧═╧═╧═╧═╧═╧═╧═╝\n");
 	
 } //end of showboard func
 
