@@ -198,6 +198,7 @@ void makeMove (char* input, int board[8][8]) {
 
 	board[end_x][end_y] = board[start_x][start_y];
 	board[start_x][start_y] = 0;
+
 }
 
 //MOVENT CHECKS ENDS
@@ -245,8 +246,9 @@ int main () {
 
     } while (!isValidMove(buf, board) && buf[0] != 'q' && buf[0] != 'Q');
     makeMove(buf, board);
+
     //added
-   whitesMove = !whitesMove;
+    whitesMove = !whitesMove;
 
   } while (buf[0] != 'q' && buf[0] != 'Q') ;
     
