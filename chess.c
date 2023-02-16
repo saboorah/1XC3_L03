@@ -116,7 +116,11 @@ bool isValidMove (char* input, int board[8][8]) {
 		case 0: // moving a blank spot is never valid
 			return false;
 		case 1: // King
-			break;
+			if (abs(start_x - end_x) <= 1 && abs(start_y - end_y) <= 1) {
+                        return true;
+			}
+			return false;
+			//-break;
 		case 2: // Queen
 		//printf("Queen Selected\n");
 			while (true) {
@@ -165,18 +169,81 @@ bool isValidMove (char* input, int board[8][8]) {
 					return true;
 				}
 			}	
-			break;
+			return false; //was break;
 		case 3 : // Bishop
-			break;
+			while (true) {
+                        	xcheck += (start_x > end_x)? -1 : 1;
+                        	ycheck += (start_y > end_y)? -1 : 1;
+                        	if (xcheck < 0 || ycheck < 0 || xcheck > 7 || ycheck > 7) {
+                                	break;
+                        	}
+                        	if (board[xcheck][ycheck] != 0) {
+                                	piecesInWay += 1;
+                        	}
+                        	if (piecesInWay == 2) {
+                                	break;
+                        	}
+                        	if (xcheck == end_x && ycheck == end_y) {
+                                	return true;
+                        	}
+                        }
+			return false;
+			//-break;
 		case 4 : // Knight
-			break;
+			if (abs(start_x - end_x) == 1 && abs(end_y - start_y) == 2) {
+		                return true;
+		        } else if (abs(start_x - end_x) == 2 && abs(end_y - start_y) == 1) {
+		                return true;
+		        }
+			return false;//break;
 		case 5 : // Rook
-			break;
-		case 6 : // Pawn
-			break;
- 	}
+			while (true) {
+                        	if (start_y == end_y) {
+                             		xcheck += (start_x > end_x)? -1 : 1;
+                        	} else if (start_x == end_x) {
+                                	ycheck += (start_y > end_y)? -1 : 1;
+                        	} else {
+                                	return false;
+                        	}
 
-} //added? 
+                        	if (xcheck < 0 || ycheck < 0 || xcheck > 7 || ycheck > 7) {
+                                	break;
+                        	}
+                        	if (board[xcheck][ycheck] != 0) {
+                                	piecesInWay += 1;
+                        	}
+                        	if (piecesInWay == 2) {
+                                	break;
+                        	}
+                        	if (xcheck == end_x && ycheck == end_y) {
+                                	return true;
+                        	}
+			return false;//break;
+		case 6 : // Pawn
+			//printf("Pawn Selected\n");
+                	//printf("Moving in column %d \n", y1);
+                	//printf("y1-y2=%d\n", x1-x2);
+                	if (start_x - end_x == 1 && start_y == end_y) { // forward one
+                        	printf("Detected forward move by 1\n");
+                        	if (board[end_x][end_y] == 0) {
+                                	return true;
+                        	}
+                	} else if (start_x - end_x == 2 && start_y == end_y) { // forward two
+//                      	printf("Detected forward move by 2\n");
+                        	if (board[end_x][end_y] == 0 && board[end_x+1][end_y] == 0 && start_x == 6) {
+                                	return true;
+                        	}
+                	} else if (abs(start_y - end_y) == 1 && start_x - end_x == 1) { // capture left or right
+                        	//printf("Detected Capture\n");
+                        	if (board[end_x][end_y] != 0) {
+                                	return true;
+                        	}
+			}
+
+ 	}
+	return false;
+} //added?
+} 
 	/*
 	if (!memberOf(validMoves, end_x, end_y)) {
 		return false;
@@ -191,10 +258,10 @@ bool isValidMove (char* input, int board[8][8]) {
 
 void makeMove (char* input, int board[8][8]) {
 
-	int start_x = input[0] - 48;
-	int start_y = input[1] - 48;
-	int end_x = input[3] - 48;
-	int end_y = input[4] - 48;
+	int start_y = input[0] - 48;
+	int start_x = input[1] - 48;
+	int end_y = input[3] - 48;
+	int end_x = input[4] - 48;
 
 	board[end_x][end_y] = board[start_x][start_y];
 	board[start_x][start_y] = 0;
@@ -255,4 +322,6 @@ int main () {
 	printf("Terminating...\n") ; 
 
 } 
+
+
 
